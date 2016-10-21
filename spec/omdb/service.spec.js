@@ -7,7 +7,7 @@ describe('omdb service', function(){
     var $httpBackend;
     beforeEach(module('omdb'));
 
-    beforeEach(inject(function(_omdbApi_, _$httpBackend_, $injector){
+    beforeEach(inject(function(_omdbApi_, _$httpBackend_){
         omdbApi = _omdbApi_;
         $httpBackend = _$httpBackend_;
     }));
