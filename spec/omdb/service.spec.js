@@ -9,20 +9,20 @@ describe('omdb service', function(){
 
     beforeEach(inject(function(_omdbApi_, _$httpBackend_, $injector){
         omdbApi = _omdbApi_;
-        $httpBackend = $injector.get('$httpBackend');
+        $httpBackend = _$httpBackend_;
     }));
     
     it('should return search movie data', function(){
-        console.log(angular.mock.dump(movieData));
         var response;
-
-        $httpBackend.when('GET', 'http://www.omdbapi.com/?s=star%20wars')
+        
+        $httpBackend.when('GET', 'http://www.omdbapi.com/?v=1&s=star%20wars')
         .respond(200, movieData);
 
         omdbApi.search('star wars')
         .then(function(data){
             response = data;
         });
+        
         $httpBackend.flush();
         expect(response).toEqual(movieData);
     });
