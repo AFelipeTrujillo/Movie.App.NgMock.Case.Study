@@ -1,0 +1,8 @@
+div
+    br
+    ol.breadcrumb
+        li
+            a(ng-href='#/') Home
+    accordion
+        accordion-group( ng-repeat='result in  results' is-open='result.open')
+            | {{result.Title}}

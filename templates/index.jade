@@ -1,0 +1,26 @@
+doctype html
+html(ng-app="movieApp")
+    head
+        title Movie App
+        meta(charset='utf-8')
+        link(href = 'vendors.css', rel = 'stylesheet')
+    body
+        .header
+            .container
+                .page-header
+                    h1
+                        a(href="#/") MovieApp
+                    p.lead Yout Resource for Movie Data
+                .div(ng-controller='SearchController')
+                    form.form-inline-lg(ng-submit='search()')
+                        .input-group
+                            input.form-control(type='text', ng-model='query')
+                            span.input-group-btn
+                                button.btn.btn-default(type='button', ng-click='search()') Go!
+        .container
+            div(ng-view="")
+        .footer
+            .container
+                p From @AFelipeTrujillo
+    script(src='vendors.js')
+    script(src='app.js')

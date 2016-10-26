@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="movieApp">
+  <head>
+    <title>Movie App</title>
+    <meta charset="utf-8">
+    <link href="vendors.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="page-header">
+          <h1><a href="#/">MovieApp</a></h1>
+          <p class="lead">Yout Resource for Movie Data</p>
+        </div>
+        <div ng-controller="SearchController" class="div">
+          <form ng-submit="search()" class="form-inline-lg">
+            <div class="input-group">
+              <input type="text" ng-model="query" class="form-control"><span class="input-group-btn">
+                <button type="button" ng-click="search()" class="btn btn-default">Go!</button></span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div ng-view=""></div>
+    </div>
+    <div class="footer">
+      <div class="container">
+        <p>From @AFelipeTrujillo</p>
+      </div>
+    </div>
+  </body>
+  <script src="vendors.js"></script>
+  <script src="app.js"></script>
+</html>
