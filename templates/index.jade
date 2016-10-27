@@ -15,7 +15,7 @@ html(ng-app="movieApp")
                 .div(ng-controller='SearchController')
                     form.form-inline-lg(ng-submit='search()')
                         .input-group
-                            input.form-control(type='text', ng-model='query')
+                            input.form-control(type='text', ng-model='query', ng-keyup='keyup()', ng-keydown='keydown()')
                             span.input-group-btn
                                 button.btn.btn-default(type='button', ng-click='search()') Go!
         .container

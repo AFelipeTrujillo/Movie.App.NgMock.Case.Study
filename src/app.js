@@ -38,6 +38,10 @@ angular.module('movieApp')
     $scope.isMultipleOf = function(x){
         return x % this.multiple === 0;
     }
+    
+    $scope.keyup = function(){
+        $location.path('/result').search('q', $scope.query);
+    }
 })
 angular.module('movieCore',['ngResource'])
 .factory('PopularMovies',function($resource){
