@@ -3,7 +3,7 @@
   <ol class="breadcrumb">
     <li><a ng-href="#/">Home</a></li>
   </ol>
-  <accordion>
-    <accordion-group ng-repeat="result in  results" is-open="result.open">{{result.Title}}</accordion-group>
-  </accordion>
+  <uib-accordion class="panel-default">
+    <div ng-repeat="result in  results" is-open="result.open" uib-accordion-group="uib-accordion-group" heading="{{result.Title}}"></div>
+  </uib-accordion>
 </div>

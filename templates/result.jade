@@ -3,6 +3,6 @@ div
     ol.breadcrumb
         li
             a(ng-href='#/') Home
-    accordion
-        accordion-group( ng-repeat='result in  results' is-open='result.open')
-            | {{result.Title}}
+    uib-accordion.panel-default
+        div( ng-repeat='result in  results' is-open='result.open' uib-accordion-group heading='{{result.Title}}')
+            
