@@ -4,6 +4,8 @@
     <li><a ng-href="#/">Home</a></li>
   </ol>
   <uib-accordion class="panel-default">
-    <div ng-repeat="result in  results" is-open="result.open" uib-accordion-group="uib-accordion-group" heading="{{result.Title}}"></div>
+    <div ng-repeat="result in  results" ng-click="expand($index,result.imdbID)" is-open="result.open" uib-accordion-group="uib-accordion-group" heading="{{result.Title}}" class="panel-default">
+      <movie-result result="result.data"></movie-result>
+    </div>
   </uib-accordion>
 </div>

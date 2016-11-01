@@ -14,11 +14,11 @@
                 },
 
                 find : function(id){
-                    /*return $http.get(baseURL + 'i=' + encodeURIComponent(id))
+                    return $http.get(baseURL + 'i=' + encodeURIComponent(id))
                     .then(function(response){
                       return response.data;
-                    })*/
-                    return { "Title": "Star Wars", "Year": "1983", "Rated": "N/A", "Released": "01 May 1983", "Runtime": "N/A", "Genre": "Action, Adventure, Sci-Fi", "Director": "N/A", "Writer": "N/A", "Actors": "Harrison Ford, Alec Guinness, Mark Hamill, James Earl Jones", "Plot": "N/A", "Language": "English", "Country": "USA", "Awards": "N/A", "Poster": "http://ia.media-imdb.com/images/M/MV5BMWJhYWQ3ZTEtYTVkOS00ZmNlLWIxZjYtODZjNTlhMjMzNGM2XkEyXkFqcGdeQXVyNzg5OTk2OA@@._V1_SX300.jpg", "Metascore": "N/A", "imdbRating": "7.9", "imdbVotes": "356", "imdbID": "tt0251413", "Type": "game", "Response": "True" }
+                    })
+                    //return { "Title": "Star Wars", "Year": "1983", "Rated": "N/A", "Released": "01 May 1983", "Runtime": "N/A", "Genre": "Action, Adventure, Sci-Fi", "Director": "N/A", "Writer": "N/A", "Actors": "Harrison Ford, Alec Guinness, Mark Hamill, James Earl Jones", "Plot": "N/A", "Language": "English", "Country": "USA", "Awards": "N/A", "Poster": "http://ia.media-imdb.com/images/M/MV5BMWJhYWQ3ZTEtYTVkOS00ZmNlLWIxZjYtODZjNTlhMjMzNGM2XkEyXkFqcGdeQXVyNzg5OTk2OA@@._V1_SX300.jpg", "Metascore": "N/A", "imdbRating": "7.9", "imdbVotes": "356", "imdbID": "tt0251413", "Type": "game", "Response": "True" }
                 }
             }
         });
@@ -85,6 +85,7 @@ angular.module('movieApp')
         '</div>',
         '<div class="col-sm-8">',
           '<h3>{{result.Title}}</h3>',
+          '<p><strong>Plot</strong> {{result.Plot}}</p>',
           '<p><strong>Director</strong> {{result.Director}}</p>',
           '<p><strong>Actors</strong> {{result.Actors}}</p>',
           '<p><strong>Released</strong> {{result.Released}}</p>',
@@ -99,9 +100,16 @@ angular.module('movieApp')
 .controller('ResultController', function($scope, $location, omdbApi){
     $scope.results = [];
     //$scope.results.push({ data : { Title : 'Star Wars: Episode IV - A New Hope'} });
-    
+
     $query = $location.search().q;
-    
+
+    $scope.expand = function(index, id){
+      omdbApi.find(id)
+      .then(function(data){
+          $scope.results[index].data = data;
+      });
+    }
+
     omdbApi.search($query)
     .then(function(data){
         $scope.results = data.Search;
@@ -110,6 +118,7 @@ angular.module('movieApp')
         $scope.errorMessage = 'Something went wrong!';
     })
 })
+
 angular.module('movieApp')
 .controller('SearchController' , function($scope, $location, $timeout){
     $scope.multiple = 2;

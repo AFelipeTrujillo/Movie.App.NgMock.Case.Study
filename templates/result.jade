@@ -4,5 +4,6 @@ div
         li
             a(ng-href='#/') Home
     uib-accordion.panel-default
-        div( ng-repeat='result in  results' is-open='result.open' uib-accordion-group heading='{{result.Title}}')
+        div.panel-default( ng-repeat='result in  results' ng-click="expand($index,result.imdbID)" is-open='result.open' uib-accordion-group heading='{{result.Title}}')
+          movie-result(result="result.data")
             
