@@ -14,11 +14,11 @@
                 },
 
                 find : function(id){
-                    return $http.get(baseURL + 'i=' + encodeURIComponent(id))
+                    /*return $http.get(baseURL + 'i=' + encodeURIComponent(id))
                     .then(function(response){
                       return response.data;
-                    })
-                    //return { "Title": "Star Wars", "Year": "1983", "Rated": "N/A", "Released": "01 May 1983", "Runtime": "N/A", "Genre": "Action, Adventure, Sci-Fi", "Director": "N/A", "Writer": "N/A", "Actors": "Harrison Ford, Alec Guinness, Mark Hamill, James Earl Jones", "Plot": "N/A", "Language": "English", "Country": "USA", "Awards": "N/A", "Poster": "http://ia.media-imdb.com/images/M/MV5BMWJhYWQ3ZTEtYTVkOS00ZmNlLWIxZjYtODZjNTlhMjMzNGM2XkEyXkFqcGdeQXVyNzg5OTk2OA@@._V1_SX300.jpg", "Metascore": "N/A", "imdbRating": "7.9", "imdbVotes": "356", "imdbID": "tt0251413", "Type": "game", "Response": "True" }
+                    })*/
+                    return { "Title": "Star Wars", "Year": "1983", "Rated": "N/A", "Released": "01 May 1983", "Runtime": "N/A", "Genre": "Action, Adventure, Sci-Fi", "Director": "N/A", "Writer": "N/A", "Actors": "Harrison Ford, Alec Guinness, Mark Hamill, James Earl Jones", "Plot": "N/A", "Language": "English", "Country": "USA", "Awards": "N/A", "Poster": "http://ia.media-imdb.com/images/M/MV5BMWJhYWQ3ZTEtYTVkOS00ZmNlLWIxZjYtODZjNTlhMjMzNGM2XkEyXkFqcGdeQXVyNzg5OTk2OA@@._V1_SX300.jpg", "Metascore": "N/A", "imdbRating": "7.9", "imdbVotes": "356", "imdbID": "tt0251413", "Type": "game", "Response": "True" }
                 }
             }
         });
@@ -68,6 +68,31 @@ angular.module('movieApp',['ui.bootstrap','ngRoute','omdb', 'movieCore'])
         templateUrl : 'result.html',
         controller : 'ResultController'
     })
+})
+
+angular.module('movieApp')
+.directive('movieResult', function(){
+  return {
+    restrict : 'E',
+    replace : true,
+    scope : {
+      result : '=result'
+    },
+    template :[
+      '<div class="row">',
+        '<div class="col-sm-4">',
+          '<img ng-src="{{result.Poster}}" width="300">',
+        '</div>',
+        '<div class="col-sm-8">',
+          '<h3>{{result.Title}}</h3>',
+          '<p><strong>Director</strong> {{result.Director}}</p>',
+          '<p><strong>Actors</strong> {{result.Actors}}</p>',
+          '<p><strong>Released</strong> {{result.Released}}</p>',
+          '<p><strong>Genre</strong> {{result.Genre}}</p>',
+        '</div>',
+      '</div>'
+    ].join('')
+  }
 })
 
 angular.module('movieApp')
@@ -127,7 +152,7 @@ angular.module('movieApp')
 
      //PopularMovies.get()
      //.then(function(data){
-       var data = ['tt0076759', 'tt0088684', 'tt0086190'];
+       var data = ['tt0076759', 'tt0251413', 'tt0086190'];
        results = data;
        findMovie(results[0]);
        $interval(function(){
