@@ -1,7 +1,9 @@
 angular.module('movieApp')
-.controller('ResultController', function($scope, $location, $exceptionHandler, omdbApi){
+.controller('ResultController', function($scope, $location, $exceptionHandler, $log, omdbApi){
     $scope.results = [];
     //$scope.results.push({ data : { Title : 'Star Wars: Episode IV - A New Hope'} });
+    $log.info('Info Log');
+    $log.error('Error Log');
 
     $query = $location.search().q;
 
@@ -15,6 +17,7 @@ angular.module('movieApp')
     omdbApi.search($query)
     .then(function(data){
         $scope.results = data.Search;
+        $log.info('Data returns','star wars',data);
     })
     .catch(function(e){
       $exceptionHandler(e);
