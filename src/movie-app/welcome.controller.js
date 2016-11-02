@@ -11,7 +11,7 @@ angular.module('movieApp')
 
      //PopularMovies.get()
      //.then(function(data){
-       var data = ['tt0076759', 'tt0251413', 'tt0086190'];
+       var data = ['tt0076759', 'tt0080684', 'tt0086190'];
        results = data;
        findMovie(results[0]);
        $interval(function(){

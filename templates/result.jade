@@ -3,6 +3,8 @@ div
     ol.breadcrumb
         li
             a(ng-href='#/') Home
+        li
+          a result
     uib-accordion.panel-default
         div.panel-default( ng-repeat='result in  results' ng-click="expand($index,result.imdbID)" is-open='result.open' uib-accordion-group heading='{{result.Title}}')
           movie-result(result="result.data")

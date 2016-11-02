@@ -2,6 +2,7 @@
 <div><br/>
   <ol class="breadcrumb">
     <li><a ng-href="#/">Home</a></li>
+    <li><a>result</a></li>
   </ol>
   <uib-accordion class="panel-default">
     <div ng-repeat="result in  results" ng-click="expand($index,result.imdbID)" is-open="result.open" uib-accordion-group="uib-accordion-group" heading="{{result.Title}}" class="panel-default">
