@@ -57,7 +57,7 @@
   }
 )();
 
-angular.module('movieApp',['ui.bootstrap','ngRoute','omdb', 'movieCore'])
+angular.module('movieApp',['ui.bootstrap','ngRoute','omdb', 'movieCore', 'ngMockE2E'])
 .config(function($routeProvider){
     $routeProvider
     .when('/',{
@@ -69,11 +69,15 @@ angular.module('movieApp',['ui.bootstrap','ngRoute','omdb', 'movieCore'])
         controller : 'ResultController'
     })
 })
+.run(function($httpBackend){
+  $httpBackend.whenGET('popular').respond(200, {data : ['tt0133093', 'tt0234215','tt0076759', 'tt0080684', 'tt0086190']});
+  $httpBackend.whenGET(/.*/).passThrough();
+})
 
 angular.module('movieApp')
 .filter('fromNow' ,function fromNowFilter(){
   return function(value, baseDate){
-    if(!value) { throw 'date value cannot be undefined'; }
+    if(!value) return;
     var date = value;
 
     if(typeof(value) === 'string'){
@@ -197,14 +201,23 @@ angular.module('movieApp')
        })
      }
 
-     //PopularMovies.get()
-     //.then(function(data){
-       var data = ['tt0076759', 'tt0080684', 'tt0086190'];
-       results = data;
+     PopularMovies.query(function(response){
+       results = response.data;
        findMovie(results[0]);
        $interval(function(){
          ++idx;
          findMovie(results[idx % results.length]);
        },5000)
+     });
+
+     //PopularMovies.get()
+     //.then(function(data){
+       /*var data = ['tt0076759', 'tt0080684', 'tt0086190'];
+       results = data;
+       findMovie(results[0]);
+       $interval(function(){
+         ++idx;
+         findMovie(results[idx % results.length]);
+       },5000)*/
      //});
 })
